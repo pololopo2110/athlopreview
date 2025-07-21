@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Highlights RD</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Lato:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form class="registration-form" action="https://formspree.io/f/xdoqzqzq" method="POST">
+    <h2>Formulario de Registro</h2>
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellidos">Apellidos</label>
+    <input type="text" id="apellidos" name="apellidos" required>
+
+    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+    <label for="colegio">Colegio o Universidad</label>
+    <input type="text" id="colegio" name="colegio" required>
+
+    <label for="posicion">Posición</label>
+    <input type="text" id="posicion" name="posicion" required>
+
+    <label for="telefono">Teléfono (del estudiante, tutor o padre)</label>
+    <input type="tel" id="telefono" name="telefono" required>
+
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="ano_graduacion">Año de graduación</label>
+    <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+
+    <button type="submit">Enviar Registro</button>
+  </form>
+
+  <div id="success-message" class="success-message" style="display:none;">
+    <h3>¡Registro Enviado Exitosamente!</h3>
+    <p>Gracias por tu interés en Highlights RD. Hemos recibido tu información y te contactaremos pronto.</p>
+    <p><strong>Te avisaremos por correo electrónico cuando tu solicitud sea procesada.</strong></p>
+    <a href="index.html" class="cta-small">Volver al Inicio</a>
+  </div>
+</body>
+</html> 

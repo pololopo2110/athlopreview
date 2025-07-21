@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIGHLIGHTS RD - Desarrollando Atletas Estudiantiles</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900|Lato:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <video class="hero-bg" autoplay loop muted poster="hero.jpg">
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>HIGHLIGHTS RD: <span>Desarrollando Atletas Estudiantiles de Élite</span></h1>
+      <p>Tu puente hacia el deporte universitario y el éxito profesional.</p>
+      <a href="#programas" class="cta">CONVIÉRTETE EN UN ATLETA ESTUDIANTIL</a>
+    </div>
+  </header>
+
+  <!-- Quiénes Somos -->
+  <section class="about" id="about">
+    <h2>Nuestra Misión y Visión</h2>
+    <div class="about-content">
+      <div class="about-icons">
+        <div class="about-icon-item" onclick="openModal('academico')">
+          <h3>Desarrollo Académico</h3>
+          <p>Formación integral y excelencia educativa</p>
+        </div>
+        <div class="about-icon-item" onclick="openModal('atletico')">
+          <h3>Excelencia Atlética</h3>
+          <p>Entrenamiento de alto rendimiento</p>
+        </div>
+        <div class="about-icon-item" onclick="openModal('mentoria')">
+          <h3>Mentoría y Reclutamiento</h3>
+          <p>Guía hacia el deporte universitario</p>
+        </div>
+      </div>
+      <p><strong>Misión:</strong> Empoderar a jóvenes talentos deportivos para alcanzar su máximo potencial atlético y académico, facilitando su transición y éxito en el deporte universitario. <br><strong>Visión:</strong> Ser líderes en el desarrollo integral de atletas estudiantiles en RD e internacionalmente, conectando talento local con oportunidades educativas y deportivas de alto nivel. <br><strong>Alianza:</strong> Socio Oficial de Reclutamiento @NUCAA.</p>
+    </div>
+  </section>
+
+  <!-- Programas -->
+  <section class="programs" id="programas">
+    <h2>Programas Destacados</h2>
+    <div class="program-cards">
+      <a href="registro.html" class="card" style="text-decoration:none;">
+        <img src="athlete-dev.jpg" alt="Desarrollo de Atletas">
+        <h3>Desarrollo de Atletas</h3>
+        <p>Entrenamiento de alto rendimiento, técnica y formación integral para jóvenes deportistas.</p>
+        <span class="cta-small">Inscribirse</span>
+      </a>
+      <a href="registro.html" class="card" style="text-decoration:none;">
+        <img src="recruitment.jpg" alt="Reclutamiento Universitario">
+        <h3>Reclutamiento Universitario</h3>
+        <p>Mentoría y conexión con universidades. ¡BECOME A STUDENT-ATHLETE!</p>
+        <span class="cta-small">Inscribirse</span>
+      </a>
+      <a href="registro.html" class="card" style="text-decoration:none;">
+        <img src="camp.jpg" alt="Campamentos">
+        <h3>Campamentos</h3>
+        <p>HIGHLIGHTS SUMMER CAMP 2025 CAP CANA. <br> <strong>¡SOLO QUEDAN 2 SEMANAS!</strong></p>
+        <span class="cta-small">Inscribirse</span>
+      </a>
+      <a href="registro.html" class="card" style="text-decoration:none;">
+        <img src="events.jpg" alt="Eventos">
+        <h3>Eventos</h3>
+        <p>Propella Cup, MIC Football, MATCHDAY #!</p>
+        <span class="cta-small">Inscribirse</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="testimonials" id="testimonios">
+    <h2>Impacto Real</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <img src="athlete1.jpg" alt="Testimonio 1">
+        <blockquote>"Gracias a Highlights RD conseguí una beca y crecí como atleta y estudiante."</blockquote>
+        <cite>- Juan Pérez</cite>
+      </div>
+      <div class="testimonial">
+        <img src="athlete2.jpg" alt="Testimonio 2">
+        <blockquote>"El campamento fue una experiencia inolvidable, aprendí y me divertí mucho."</blockquote>
+        <cite>- María Gómez</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section class="gallery" id="galeria">
+    <h2>Nuestros Momentos Destacados</h2>
+    <div class="gallery-grid">
+      <img src="gallery1.jpg" alt="Galería 1">
+      <img src="gallery2.jpg" alt="Galería 2">
+      <video controls poster="gallery3.jpg">
+        <source src="gallery3.mp4" type="video/mp4">
+      </video>
+      <img src="gallery4.jpg" alt="Galería 4">
+      <img src="gallery5.jpg" alt="Galería 5">
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="contact" id="contacto">
+    <h2>Contáctanos</h2>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Nombre" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <textarea name="message" placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar Mensaje</button>
+    </form>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:info@highlightsdr.com">info@highlightsdr.com</a></p>
+      <p>Tel: <a href="tel:+18095551234">+1 (809) 555-1234</a></p>
+      <div class="social-links">
+        <a href="#"><img src="instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="facebook.svg" alt="Facebook"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 HIGHLIGHTS RD. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Cookies Banner -->
+  <div id="cookies-banner" class="cookies-banner" style="display:none;">
+    <span>
+      Utilizamos cookies para garantizar el correcto funcionamiento y la seguridad de este sitio, así como para analizar su uso y mejorar tu experiencia. Puedes obtener más información en nuestra <a href="privacy.html" target="_blank" style="color:#00c3ff; text-decoration:underline;">Política de Privacidad</a>.
+    </span>
+    <div class="cookies-actions">
+      <button id="accept-essential">Aceptar solo esenciales</button>
+      <button id="accept-all">Aceptar todas las cookies</button>
+    </div>
+  </div>
+
+  <!-- Modales para explicaciones -->
+  <div id="modal-academico" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('academico')">&times;</span>
+      <h2>Desarrollo Académico</h2>
+      <p>En Highlights RD, creemos que la excelencia académica es fundamental para el éxito integral de nuestros atletas. Nuestro programa incluye:</p>
+      <ul>
+        <li><strong>Tutoría académica personalizada</strong> para mantener altos promedios</li>
+        <li><strong>Preparación para exámenes estandarizados</strong> (SAT, ACT)</li>
+        <li><strong>Orientación vocacional</strong> y planificación de carrera</li>
+        <li><strong>Desarrollo de habilidades de estudio</strong> y gestión del tiempo</li>
+        <li><strong>Apoyo en la transición</strong> al sistema educativo universitario</li>
+      </ul>
+      <p>Nuestro objetivo es formar atletas que no solo destaquen en el deporte, sino que también sean estudiantes ejemplares y futuros profesionales exitosos.</p>
+    </div>
+  </div>
+
+  <div id="modal-atletico" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('atletico')">&times;</span>
+      <h2>Excelencia Atlética</h2>
+      <p>Desarrollamos atletas de élite a través de un programa integral de entrenamiento que incluye:</p>
+      <ul>
+        <li><strong>Entrenamiento técnico especializado</strong> por deporte</li>
+        <li><strong>Preparación física avanzada</strong> y acondicionamiento</li>
+        <li><strong>Psicología deportiva</strong> y mentalidad ganadora</li>
+        <li><strong>Nutrición deportiva</strong> y planificación de comidas</li>
+        <li><strong>Recuperación y prevención de lesiones</strong></li>
+        <li><strong>Análisis de rendimiento</strong> con tecnología avanzada</li>
+      </ul>
+      <p>Nuestros entrenadores certificados trabajan para maximizar el potencial atlético de cada estudiante, preparándolos para competir al más alto nivel.</p>
+    </div>
+  </div>
+
+  <div id="modal-mentoria" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('mentoria')">&times;</span>
+      <h2>Mentoría y Reclutamiento</h2>
+      <p>Como Socio Oficial de Reclutamiento @NUCAA, facilitamos el camino hacia el deporte universitario:</p>
+      <ul>
+        <li><strong>Evaluación de perfil atlético</strong> y académico</li>
+        <li><strong>Conexión directa con coaches universitarios</strong> y reclutadores</li>
+        <li><strong>Creación de highlight reels</strong> y material promocional</li>
+        <li><strong>Asesoría en el proceso de aplicación</strong> a universidades</li>
+        <li><strong>Negociación de becas deportivas</strong> y académicas</li>
+        <li><strong>Acompañamiento durante la transición</strong> al deporte universitario</li>
+      </ul>
+      <p>Nuestro equipo de mentores, muchos ex-atletas universitarios, guía a cada estudiante en su camino hacia el éxito deportivo y académico.</p>
+    </div>
+  </div>
+
+  <script>
+    // Banner de cookies
+    if (!localStorage.getItem('cookiesPreference')) {
+      document.getElementById('cookies-banner').style.display = 'flex';
+    }
+    document.getElementById('accept-essential').onclick = function() {
+      localStorage.setItem('cookiesPreference', 'essential');
+      document.getElementById('cookies-banner').style.display = 'none';
+    };
+    document.getElementById('accept-all').onclick = function() {
+      localStorage.setItem('cookiesPreference', 'all');
+      document.getElementById('cookies-banner').style.display = 'none';
+      if (typeof enableAnalytics === 'function') enableAnalytics();
+    };
+
+    // Transiciones mejoradas de aparición/desaparición
+    function revealOnScroll() {
+      const observer = new window.IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { 
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      document.querySelectorAll('section, header.hero').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Funciones para modales con animación
+    function openModal(type) {
+      var modal = document.getElementById(`modal-${type}`);
+      modal.style.display = 'block';
+      setTimeout(function() {
+        modal.classList.add('show');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(type) {
+      var modal = document.getElementById(`modal-${type}`);
+      modal.classList.remove('show');
+      setTimeout(function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }, 400);
+    }
+
+    // Cerrar modal al hacer clic fuera
+    window.onclick = function(event) {
+      if (event.target.classList && event.target.classList.contains('modal')) {
+        event.target.classList.remove('show');
+        setTimeout(function() {
+          event.target.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }, 400);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+  </script>
+</body>
+</html> 
