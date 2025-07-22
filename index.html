@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HIGHLIGHTS RD - Desarrollando Atletas Estudiantiles</title>
@@ -189,6 +189,8 @@
     </div>
   </div>
 
+  <button id="toggle-theme" class="toggle-theme" aria-label="Alternar modo claro/oscuro">🌙</button>
+
   <script>
     // Banner de cookies
     if (!localStorage.getItem('cookiesPreference')) {
@@ -253,6 +255,31 @@
         }, 400);
       }
     }
+
+    // Alternar modo claro/oscuro
+    const themeBtn = document.getElementById('toggle-theme');
+    function setTheme(dark) {
+      if (dark) {
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        themeBtn.textContent = '🌙';
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        themeBtn.textContent = '☀️';
+      }
+    }
+    // Guardar preferencia en localStorage
+    themeBtn.onclick = function() {
+      const isDark = !document.body.classList.contains('dark-mode');
+      setTheme(isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    };
+    // Inicializar según preferencia
+    (function() {
+      const saved = localStorage.getItem('theme');
+      setTheme(saved !== 'light');
+    })();
 
     window.addEventListener('DOMContentLoaded', revealOnScroll);
   </script>

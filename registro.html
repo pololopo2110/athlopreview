@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <form class="registration-form" action="https://formspree.io/f/xdoqzqzq" method="POST">
+  <form class="registration-form" id="registroForm" action="https://formspree.io/f/xzzvdqwo" method="POST">
     <h2>Formulario de Registro</h2>
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required>
+
     <label for="nombre">Nombre</label>
     <input type="text" id="nombre" name="nombre" required>
 
@@ -28,11 +31,11 @@
     <label for="telefono">Teléfono (del estudiante, tutor o padre)</label>
     <input type="tel" id="telefono" name="telefono" required>
 
-    <label for="email">Correo electrónico</label>
-    <input type="email" id="email" name="email" required>
-
     <label for="ano_graduacion">Año de graduación</label>
     <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+
+    <label for="message">Mensaje adicional (opcional)</label>
+    <textarea id="message" name="message"></textarea>
 
     <button type="submit">Enviar Registro</button>
   </form>
@@ -43,5 +46,37 @@
     <p><strong>Te avisaremos por correo electrónico cuando tu solicitud sea procesada.</strong></p>
     <a href="index.html" class="cta-small">Volver al Inicio</a>
   </div>
+  <div id="error-message" class="success-message" style="display:none; border-color: #c00; color: #c00;">
+    <h3>Error al enviar el formulario</h3>
+    <p>Hubo un problema al enviar tu registro. Por favor, intenta nuevamente más tarde.</p>
+    <a href="registro.html" class="cta-small">Volver al formulario</a>
+  </div>
+  <script>
+    document.getElementById('registroForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const action = form.action;
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+        } else {
+          form.style.display = 'none';
+          document.getElementById('error-message').style.display = 'block';
+        }
+      } catch (error) {
+        form.style.display = 'none';
+        document.getElementById('error-message').style.display = 'block';
+      }
+    });
+  </script>
 </body>
 </html> 
