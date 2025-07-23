@@ -40,6 +40,33 @@
       <li>Actividades de integración y liderazgo</li>
       <li>Charlas motivacionales y talleres de desarrollo personal</li>
     </ul>
+    <form class="apply-form" action="https://formspree.io/f/xzzvdqwo" method="POST" style="margin-bottom:2rem;">
+      <input type="hidden" name="servicio" value="Summer camp">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+      <label for="apellidos">Apellidos</label>
+      <input type="text" id="apellidos" name="apellidos" required>
+      <label for="genero">Género</label>
+      <select id="genero" name="genero" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+      <label for="fecha_nacimiento">Fecha de nacimiento</label>
+      <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+      <label for="ano_graduacion">Año de graduación</label>
+      <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+      <label for="institucion">Institución educativa</label>
+      <input type="text" id="institucion" name="institucion" required>
+      <label for="posicion">Posición</label>
+      <input type="text" id="posicion" name="posicion" required>
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required>
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required>
+      <button type="submit">Aplicar</button>
+    </form>
     <a href="index.html#aplicar" class="cta-small" style="margin-bottom:1.2rem;">Aplicar ya</a>
     <br>
     <a href="index.html" class="cta-small">Volver al inicio</a>

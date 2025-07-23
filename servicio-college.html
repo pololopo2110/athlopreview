@@ -40,7 +40,38 @@
       <li>Contacto directo con entrenadores universitarios</li>
       <li>Negociación de becas y acompañamiento en la transición</li>
     </ul>
-    <button type="button" class="cta-small" style="margin-bottom:1.2rem;" onclick="window.location.href='index.html#aplicar';">Aplicar ya</button>
+    <form class="apply-form" id="form-college" action="https://formspree.io/f/xzzvdqwo" method="POST" style="margin-bottom:2rem;">
+      <input type="hidden" name="servicio" value="College program">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+      <label for="apellidos">Apellidos</label>
+      <input type="text" id="apellidos" name="apellidos" required>
+      <label for="genero">Género</label>
+      <select id="genero" name="genero" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+      <label for="fecha_nacimiento">Fecha de nacimiento</label>
+      <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+      <label for="ano_graduacion">Año de graduación</label>
+      <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+      <label for="institucion">Institución educativa</label>
+      <input type="text" id="institucion" name="institucion" required>
+      <label for="posicion">Posición</label>
+      <input type="text" id="posicion" name="posicion" required>
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required>
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required>
+      <button type="submit">Aplicar</button>
+    </form>
+    <div id="form-success-college" class="success-message" style="display:none;">
+      <h3>¡Gracias por tu aplicación!</h3>
+      <p>Hemos recibido tu información correctamente.<br>En breve nuestro equipo se pondrá en contacto contigo.<br>Si tienes dudas, escríbenos a <a href="mailto:info@athlo.com" style="color:#4faaff;">info@athlo.com</a>.</p>
+      <a href="index.html" class="cta-small">Volver al inicio</a>
+    </div>
     <br>
     <a href="index.html" class="cta-small">Volver al inicio</a>
   </main>
@@ -48,6 +79,28 @@
     <p>&copy; 2024 ATHLO. Todos los derechos reservados.</p>
   </footer>
   <script>
+    document.getElementById('form-college').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const action = form.action;
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.reset();
+          form.style.display = 'none';
+          document.getElementById('form-success-college').style.display = 'block';
+        } else {
+          alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+        }
+      } catch (error) {
+        alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+      }
+    });
   </script>
 </body>
 </html> 
