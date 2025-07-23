@@ -8,16 +8,34 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Barra de navegación superior -->
+  <nav class="main-navbar">
+    <ul>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Servicios</a>
+        <div class="dropdown-content">
+          <a href="servicio-desarrollo.html">Desarrollo de jugadores</a>
+          <a href="servicio-college.html">College program</a>
+          <a href="servicio-summercamp.html">Summer camp</a>
+          <a href="servicio-wintercamp.html">Winter camp</a>
+          <a href="servicio-psicologicas.html">Charlas psicológicas</a>
+          <a href="servicio-amistosos.html">Amistosos</a>
+          <a href="servicio-torneos.html">Torneos</a>
+        </div>
+      </li>
+      <li><a href="#about">Quiénes Somos</a></li>
+      <li><a href="#programas">Programas</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#aplicar">Aplicar</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
   <!-- Hero Section -->
-  <header class="hero">
-    <video class="hero-bg" autoplay loop muted poster="hero.jpg">
-      <source src="hero-video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-content">
-      <h1>HIGHLIGHTS RD: <span>Desarrollando Atletas Estudiantiles de Élite</span></h1>
-      <p>Tu puente hacia el deporte universitario y el éxito profesional.</p>
-      <a href="#programas" class="cta">CONVIÉRTETE EN UN ATLETA ESTUDIANTIL</a>
-    </div>
+  <header class="logo-hero hero" style="position:relative;">
+    <div class="logo-bg-img"></div>
+    <img id="logo-img" src="logo-blanco.png" alt="Highlights Logo" class="logo-img logo-img-animated" style="position:relative;z-index:2;opacity:0;transform:scale(0.8);transition:opacity 1s, transform 1s;" onerror="this.style.display='none';document.getElementById('logo-error').style.display='block';" />
+    <div id="logo-error" style="display:none;color:#fff;text-align:center;margin-top:2rem;z-index:2;position:relative;">No se pudo cargar el logo. Asegúrate de que el archivo <b>logo-blanco.png</b> esté en la misma carpeta que <b>index.html</b> y que el nombre sea exacto.</div>
   </header>
 
   <!-- Quiénes Somos -->
@@ -38,7 +56,7 @@
           <p>Guía hacia el deporte universitario</p>
         </div>
       </div>
-      <p><strong>Misión:</strong> Empoderar a jóvenes talentos deportivos para alcanzar su máximo potencial atlético y académico, facilitando su transición y éxito en el deporte universitario. <br><strong>Visión:</strong> Ser líderes en el desarrollo integral de atletas estudiantiles en RD e internacionalmente, conectando talento local con oportunidades educativas y deportivas de alto nivel. <br><strong>Alianza:</strong> Socio Oficial de Reclutamiento @NUCAA.</p>
+      <p><strong>Misión:</strong> Empoderar a jóvenes talentos deportivos para alcanzar su máximo potencial atlético y académico, facilitando su transición y éxito en el deporte universitario. <br><strong>Visión:</strong> Ser líderes en el desarrollo integral de atletas estudiantiles en RD e internacionalmente, conectando talento local con oportunidades educativas y deportivas de alto nivel. <br><strong>Alianza:</strong> Socio Oficial de Reclutamiento de la <a href="https://www.njcaa.org/sports/msoc/index" target="_blank" rel="noopener" style="color:#4faaff;text-decoration:underline;">NJCAA</a>.</p>
     </div>
   </section>
 
@@ -75,7 +93,7 @@
 
   <!-- Testimonios -->
   <section class="testimonials" id="testimonios">
-    <h2>Impacto Real</h2>
+    <h2>Testimonios</h2>
     <div class="testimonial-cards">
       <div class="testimonial">
         <img src="athlete1.jpg" alt="Testimonio 1">
@@ -104,6 +122,60 @@
     </div>
   </section>
 
+  <!-- Elimino la sección de servicios de la página principal -->
+
+  <!-- Modal de servicios -->
+  <div id="service-modal" class="modal" style="display:none;">
+    <div class="modal-content service-modal-content">
+      <span class="close" onclick="closeServiceModal()">&times;</span>
+      <h2 id="service-modal-title"></h2>
+      <p id="service-modal-desc"></p>
+    </div>
+  </div>
+
+  <!-- Aplicar a Programas -->
+  <section class="apply" id="aplicar">
+    <h2>Aplicar a un Programa</h2>
+    <form class="apply-form" id="applyForm" action="https://formspree.io/f/mayvjqzv" method="POST">
+      <label for="programa">Selecciona el programa</label>
+      <select id="programa" name="programa" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Desarrollo de jugadores">Desarrollo de jugadores</option>
+        <option value="College program">College program</option>
+        <option value="Summer camp">Summer camp</option>
+        <option value="Winter camp">Winter camp</option>
+        <option value="Charlas psicológicas">Charlas psicológicas</option>
+        <option value="Amistosos">Amistosos</option>
+        <option value="Torneos">Torneos</option>
+      </select>
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+      <label for="apellidos">Apellidos</label>
+      <input type="text" id="apellidos" name="apellidos" required>
+      <label for="genero">Género</label>
+      <select id="genero" name="genero" required>
+        <option value="">-- Selecciona --</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required>
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" name="telefono" required>
+      <button type="submit">Aplicar</button>
+    </form>
+    <div id="apply-success" class="modal" style="display:none;">
+      <div class="modal-content service-modal-content">
+        <span class="close" onclick="closeApplySuccess()">&times;</span>
+        <h2>¡Tu solicitud ha sido enviada exitosamente!</h2>
+        <p>Pronto recibirás un correo de nuestro equipo.<br>¡Gracias por confiar en ATHLO para tu desarrollo deportivo!</p>
+        <p>Si tienes dudas, escríbenos a <a href="mailto:info@athlo.com" style="color:#4faaff;">info@athlo.com</a>.</p>
+        <a href="#" class="cta-small" onclick="closeApplySuccess();return false;">Cerrar</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Contacto -->
   <section class="contact" id="contacto">
     <h2>Contáctanos</h2>
@@ -114,7 +186,7 @@
       <button type="submit">Enviar Mensaje</button>
     </form>
     <div class="contact-info">
-      <p>Email: <a href="mailto:info@highlightsdr.com">info@highlightsdr.com</a></p>
+      <p>Email: <a href="mailto:info@athlo.com">info@athlo.com</a></p>
       <p>Tel: <a href="tel:+18095551234">+1 (809) 555-1234</a></p>
       <div class="social-links">
         <a href="#"><img src="instagram.svg" alt="Instagram"></a>
@@ -124,7 +196,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2024 HIGHLIGHTS RD. Todos los derechos reservados.</p>
+    <p>&copy; 2024 ATHLO. Todos los derechos reservados.</p>
   </footer>
 
   <!-- Cookies Banner -->
@@ -189,7 +261,7 @@
     </div>
   </div>
 
-  <button id="toggle-theme" class="toggle-theme" aria-label="Alternar modo claro/oscuro">🌙</button>
+  <!-- Elimino el botón de alternar tema y el script de cambio de modo -->
 
   <script>
     // Banner de cookies
@@ -256,32 +328,118 @@
       }
     }
 
-    // Alternar modo claro/oscuro
-    const themeBtn = document.getElementById('toggle-theme');
-    function setTheme(dark) {
-      if (dark) {
-        document.body.classList.add('dark-mode');
-        document.body.classList.remove('light-mode');
-        themeBtn.textContent = '🌙';
-      } else {
-        document.body.classList.remove('dark-mode');
-        document.body.classList.add('light-mode');
-        themeBtn.textContent = '☀️';
-      }
-    }
-    // Guardar preferencia en localStorage
-    themeBtn.onclick = function() {
-      const isDark = !document.body.classList.contains('dark-mode');
-      setTheme(isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    };
-    // Inicializar según preferencia
-    (function() {
-      const saved = localStorage.getItem('theme');
-      setTheme(saved !== 'light');
-    })();
+    // Alternar modo claro/oscuro y logo
+    // const themeBtn = document.getElementById('toggle-theme');
+    // function setTheme(dark) {
+    //   if (dark) {
+    //     document.body.classList.add('dark-mode');
+    //     document.body.classList.remove('light-mode');
+    //     themeBtn.textContent = '🌙';
+    //   } else {
+    //     document.body.classList.remove('dark-mode');
+    //     document.body.classList.add('light-mode');
+    //     themeBtn.textContent = '☀️';
+    //   }
+    // }
+    // function updateLogo() {
+    //   const logo = document.getElementById('logo-img');
+    //   if (document.body.classList.contains('light-mode')) {
+    //     logo.src = 'logo-negro.png';
+    //   } else {
+    //     logo.src = 'logo-blanco.png';
+    //   }
+    // }
+    // themeBtn.onclick = function() {
+    //   const isDark = !document.body.classList.contains('dark-mode');
+    //   setTheme(isDark);
+    //   localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    //   updateLogo();
+    // };
+    // (function() {
+    //   const saved = localStorage.getItem('theme');
+    //   setTheme(saved !== 'light');
+    //   updateLogo();
+    // })();
 
     window.addEventListener('DOMContentLoaded', revealOnScroll);
+    // Animación de entrada: primero la foto, luego el logo
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var logo = document.getElementById('logo-img');
+        logo.style.opacity = 1;
+        logo.style.transform = 'scale(1)';
+      }, 1000);
+    });
+
+    // Modal dinámico para servicios
+    const serviceData = {
+      desarrollo: {
+        title: 'Desarrollo de jugadores',
+        desc: 'Ofrecemos entrenamiento integral y personalizado, evaluaciones técnicas, planes de mejora individual y seguimiento constante para potenciar el talento y las habilidades de cada atleta.'
+      },
+      college: {
+        title: 'College program',
+        desc: 'Mentoría y acompañamiento en el proceso de reclutamiento universitario, preparación de perfiles, contacto con coaches y asesoría para obtención de becas deportivas y académicas.'
+      },
+      summer: {
+        title: 'Summer camp',
+        desc: 'Campamento de verano con entrenamientos intensivos, partidos, actividades recreativas y desarrollo personal, en un ambiente seguro y motivador.'
+      },
+      winter: {
+        title: 'Winter camp',
+        desc: 'Campamento de invierno enfocado en la mejora técnica, táctica y física, con entrenadores especializados y actividades de integración.'
+      },
+      psicologicas: {
+        title: 'Charlas psicológicas',
+        desc: 'Sesiones y talleres de psicología deportiva para fortalecer la mentalidad, la resiliencia y el bienestar emocional de los jugadores.'
+      },
+      amistosos: {
+        title: 'Amistosos',
+        desc: 'Organización de partidos amistosos para fomentar la competencia, el trabajo en equipo y la exposición de los atletas a diferentes estilos de juego.'
+      },
+      torneos: {
+        title: 'Torneos',
+        desc: 'Participación y organización de torneos locales e internacionales, brindando oportunidades de competencia y visibilidad a nuestros atletas.'
+      }
+    };
+    function openServiceModal(key) {
+      document.getElementById('service-modal-title').textContent = serviceData[key].title;
+      document.getElementById('service-modal-desc').textContent = serviceData[key].desc;
+      document.getElementById('service-modal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeServiceModal() {
+      document.getElementById('service-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Pop-up de confirmación tras aplicar
+    document.getElementById('applyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const action = form.action;
+      try {
+        const response = await fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.reset();
+          form.style.display = 'none';
+          document.getElementById('apply-success').style.display = 'flex';
+        } else {
+          alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+        }
+      } catch (error) {
+        alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+      }
+    });
+    function closeApplySuccess() {
+      document.getElementById('apply-success').style.display = 'none';
+      document.querySelector('.apply-form').style.display = 'flex';
+    }
   </script>
 </body>
 </html> 
