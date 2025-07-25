@@ -48,14 +48,22 @@
   closeBtn.style.position = 'absolute';
   closeBtn.style.top = '10px';
   closeBtn.style.right = '18px';
-  closeBtn.style.fontSize = '2rem';
-  closeBtn.style.background = 'transparent';
+  closeBtn.style.fontSize = '2.7rem';
+  closeBtn.style.background = 'rgba(255,255,255,0.95)';
   closeBtn.style.color = '#18181b';
-  closeBtn.style.border = 'none';
+  closeBtn.style.border = '2px solid #4faaff';
+  closeBtn.style.borderRadius = '50%';
+  closeBtn.style.width = '48px';
+  closeBtn.style.height = '48px';
+  closeBtn.style.display = 'flex';
+  closeBtn.style.alignItems = 'center';
+  closeBtn.style.justifyContent = 'center';
+  closeBtn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.12)';
   closeBtn.style.cursor = 'pointer';
   closeBtn.style.zIndex = '10001';
-  closeBtn.onmouseenter = () => { closeBtn.style.color = '#4faaff'; };
-  closeBtn.onmouseleave = () => { closeBtn.style.color = '#18181b'; };
+  closeBtn.style.transition = 'background 0.18s, color 0.18s, border 0.18s';
+  closeBtn.onmouseenter = () => { closeBtn.style.background = '#4faaff'; closeBtn.style.color = '#fff'; closeBtn.style.border = '2px solid #18181b'; };
+  closeBtn.onmouseleave = () => { closeBtn.style.background = 'rgba(255,255,255,0.95)'; closeBtn.style.color = '#18181b'; closeBtn.style.border = '2px solid #4faaff'; };
   closeBtn.onclick = function() { modal.style.display = 'none'; };
 
   // Iframe para el chat
