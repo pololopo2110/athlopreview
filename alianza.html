@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra alianza | ATHLO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="main-navbar">
+    <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.2rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Servicios</a>
+        <div class="dropdown-content">
+          <a href="servicio-desarrollo.html">Desarrollo de jugadores</a>
+          <a href="servicio-college.html">College program</a>
+          <a href="servicio-summercamp.html">Summer camp</a>
+          <a href="servicio-wintercamp.html">Winter camp</a>
+          <a href="servicio-psicologicas.html">Charlas psicológicas</a>
+          <a href="servicio-amistosos.html">Amistosos</a>
+          <a href="servicio-torneos.html">Torneos</a>
+        </div>
+      </li>
+      <li><a href="index.html#programas">Programas</a></li>
+      <li><a href="index.html#testimonios">Testimonios</a></li>
+      <li><a href="index.html#galeria">Galería</a></li>
+      <li><a href="index.html#aplicar">Aplicar</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <main class="service-detail">
+    <h1>Nuestra alianza</h1>
+    <p>
+      En <strong>ATHLO</strong>, creemos en el poder de las alianzas estratégicas para ampliar el impacto de nuestro trabajo y ofrecer mayores oportunidades a nuestros atletas. Nuestra colaboración con instituciones educativas, organizaciones deportivas y entidades internacionales nos permite brindar programas de alta calidad y acceso a experiencias únicas.
+    </p>
+    <p>
+      Una de nuestras alianzas más destacadas es con la <a href="https://www.njcaa.org/sports/msoc/index" target="_blank" rel="noopener">NJCAA</a>, la Asociación Nacional de Atletismo Universitario de Estados Unidos, de la cual somos socios oficiales de reclutamiento. Esta relación nos permite conectar a nuestros atletas con universidades y programas deportivos de alto nivel, facilitando su desarrollo académico y deportivo en el extranjero.
+    </p>
+    <p>
+      Además, trabajamos de la mano con entrenadores, mentores y expertos en diversas áreas para garantizar una formación integral y actualizada. Valoramos cada alianza como una oportunidad para crecer, innovar y fortalecer nuestra misión de transformar vidas a través del deporte.
+    </p>
+    <a href="index.html" class="cta-small">Volver al inicio</a>
+  </main>
+  <footer>
+    <p>&copy; 2024 ATHLO. Todos los derechos reservados.</p>
+  </footer>
+  <script src="bot-copy2-widget.js"></script>
+  <script>
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      let timeout;
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          dropdown.classList.remove('open');
+        }, 120);
+      });
+      dropdown.addEventListener('focusin', function() {
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('focusout', function() {
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.classList.remove('open');
+          }
+        }, 120);
+      });
+    });
+  </script>
+</body>
+</html> 

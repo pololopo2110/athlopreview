@@ -9,6 +9,18 @@
 <body>
   <nav class="main-navbar">
     <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.2rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropbtn">Servicios</a>
         <div class="dropdown-content">
@@ -56,7 +68,7 @@
       <label for="fecha_nacimiento">Fecha de nacimiento</label>
       <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
       <label for="ano_graduacion">Año de graduación</label>
-      <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+      <input type="number" id="ano_graduacion" name="ano_graduacion" required>
       <label for="institucion">Institución educativa</label>
       <input type="text" id="institucion" name="institucion" required>
       <label for="posicion">Posición</label>
@@ -67,11 +79,7 @@
       <input type="tel" id="telefono" name="telefono" required>
       <button type="submit">Aplicar</button>
     </form>
-    <div id="form-success-psicologicas" class="success-message" style="display:none;">
-      <h3>¡Gracias por tu aplicación!</h3>
-      <p>Hemos recibido tu información correctamente.<br>En breve nuestro equipo se pondrá en contacto contigo.<br>Si tienes dudas, escríbenos a <a href="mailto:info@athlo.com" style="color:#4faaff;">info@athlo.com</a>.</p>
-      <a href="index.html" class="cta-small">Volver al inicio</a>
-    </div>
+    <!-- Eliminado el div de éxito local -->
     <br>
     <a href="index.html" class="cta-small">Volver al inicio</a>
   </main>
@@ -92,8 +100,7 @@
         });
         if (response.ok) {
           form.reset();
-          form.style.display = 'none';
-          document.getElementById('form-success-psicologicas').style.display = 'block';
+          window.location.href = 'exito.html';
         } else {
           alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
         }
@@ -101,6 +108,30 @@
         alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
       }
     });
+
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      let timeout;
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          dropdown.classList.remove('open');
+        }, 120);
+      });
+      dropdown.addEventListener('focusin', function() {
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('focusout', function() {
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.classList.remove('open');
+          }
+        }, 120);
+      });
+    });
   </script>
+  <script src="bot-copy2-widget.js"></script>
 </body>
 </html> 

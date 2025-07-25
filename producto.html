@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Producto | ATHLO Merch</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .producto-detalle {
+      max-width: 400px;
+      margin: 100px auto 40px auto;
+      background: #18181b;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      padding: 2.5rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+    .producto-detalle img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 1.2rem;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      padding: 16px;
+      display: block;
+    }
+    .producto-detalle h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .producto-detalle .merch-price {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: #fff;
+    }
+    .producto-detalle label {
+      margin-bottom: 1rem;
+      color: #fff;
+      font-weight: 600;
+    }
+    .producto-detalle select {
+      margin-left: 0.5rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #fff;
+      background: #18181b;
+      color: #fff;
+    }
+    .producto-detalle .add-to-cart {
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+      margin-top: 1.2rem;
+    }
+    .producto-detalle .add-to-cart:hover {
+      background: #4faaff;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-navbar">
+    <ul>
+      <li class="navbar-logo"><a href="index.html">ATHLO</a></li>
+      <li><a href="merch.html">Merch</a></li>
+      <li><a href="carrito.html" class="cart-link" style="font-size:1.3rem;">🛒 Carrito</a></li>
+    </ul>
+  </nav>
+  <div class="producto-detalle" id="producto-detalle">
+    <!-- El contenido se llenará por JS -->
+  </div>
+  <script>
+    // Datos de productos (puedes mover esto a un archivo aparte si quieres)
+    const productos = [
+      {
+        nombre: 'Hoodie Blanco',
+        img: 'hoodie-blanco.PNG',
+        precio: 45,
+        precioTexto: '$45.00 USD',
+        id: 'size-hoodie-blanco'
+      },
+      {
+        nombre: 'Hoodie Negro',
+        img: 'hoodie-negro.PNG',
+        precio: 45,
+        precioTexto: '$45.00 USD',
+        id: 'size-hoodie-negro'
+      },
+      {
+        nombre: 'T-Shirt Blanco',
+        img: 'shirt-blanco.PNG',
+        precio: 25,
+        precioTexto: '$25.00 USD',
+        id: 'size-shirt-blanco'
+      },
+      {
+        nombre: 'T-Shirt Negro',
+        img: 'shirt-negro.PNG',
+        precio: 25,
+        precioTexto: '$25.00 USD',
+        id: 'size-shirt-negro'
+      },
+      {
+        nombre: 'Crewneck Negro',
+        img: 'crewneck-negro.PNG',
+        precio: 35,
+        precioTexto: '$35.00 USD',
+        id: 'size-crewneck-negro'
+      }
+    ];
+    // Obtener producto de la URL
+    const params = new URLSearchParams(window.location.search);
+    const nombreProducto = params.get('producto');
+    const producto = productos.find(p => p.nombre === nombreProducto);
+    const cont = document.getElementById('producto-detalle');
+    if (!producto) {
+      cont.innerHTML = '<h2>Producto no encontrado</h2>';
+    } else {
+      cont.innerHTML = `
+        <img src="${producto.img}" alt="${producto.nombre}">
+        <h2>${producto.nombre}</h2>
+        <div class="merch-price">${producto.precioTexto}</div>
+        <label for="${producto.id}">Talla:</label>
+        <select id="${producto.id}" class="merch-size" name="${producto.id}">
+          <option>S</option><option>M</option><option>L</option><option>XL</option>
+        </select>
+        <button class="add-to-cart">Agregar al carrito</button>
+      `;
+      // Lógica de agregar al carrito (igual que en merch.js)
+      cont.querySelector('.add-to-cart').addEventListener('click', function() {
+        const size = cont.querySelector('.merch-size').value;
+        let cart = JSON.parse(localStorage.getItem('athlo_cart') || '[]');
+        const idx = cart.findIndex(item => item.product === producto.nombre && item.size === size);
+        if (idx !== -1) {
+          cart[idx].qty += 1;
+        } else {
+          cart.push({ product: producto.nombre, img: producto.img, size, qty: 1 });
+        }
+        localStorage.setItem('athlo_cart', JSON.stringify(cart));
+        cont.querySelector('.add-to-cart').textContent = '¡Agregado!';
+        setTimeout(() => { cont.querySelector('.add-to-cart').textContent = 'Agregar al carrito'; }, 1200);
+      });
+    }
+  </script>
+</body>
+</html> 

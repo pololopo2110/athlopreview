@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión | ATHLO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="main-navbar">
+    <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.2rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Servicios</a>
+        <div class="dropdown-content">
+          <a href="servicio-desarrollo.html">Desarrollo de jugadores</a>
+          <a href="servicio-college.html">College program</a>
+          <a href="servicio-summercamp.html">Summer camp</a>
+          <a href="servicio-wintercamp.html">Winter camp</a>
+          <a href="servicio-psicologicas.html">Charlas psicológicas</a>
+          <a href="servicio-amistosos.html">Amistosos</a>
+          <a href="servicio-torneos.html">Torneos</a>
+        </div>
+      </li>
+      <li><a href="index.html#programas">Programas</a></li>
+      <li><a href="index.html#testimonios">Testimonios</a></li>
+      <li><a href="index.html#galeria">Galería</a></li>
+      <li><a href="index.html#aplicar">Aplicar</a></li>
+      <li><a href="index.html#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <main class="service-detail">
+    <h1>Misión</h1>
+    <p>
+      Nuestra misión en <strong>ATHLO</strong> es impulsar el desarrollo integral de jóvenes atletas, brindándoles las herramientas necesarias para alcanzar su máximo potencial tanto en el ámbito deportivo como académico y personal. Nos comprometemos a crear un entorno de aprendizaje, disciplina y superación, donde cada atleta pueda descubrir y fortalecer sus talentos únicos.
+    </p>
+    <p>
+      Trabajamos para inspirar a nuestros participantes a convertirse en líderes responsables, fomentando valores como la perseverancia, el respeto y la honestidad. A través de programas innovadores, mentoría personalizada y alianzas estratégicas, buscamos abrir puertas a nuevas oportunidades y acompañar a cada joven en su camino hacia el éxito.
+    </p>
+    <p>
+      En ATHLO, creemos que el deporte es una poderosa herramienta de transformación social y personal. Por ello, nuestra misión es formar atletas completos, preparados para enfrentar los retos del presente y del futuro, y capaces de generar un impacto positivo en su comunidad.
+    </p>
+    <a href="index.html" class="cta-small">Volver al inicio</a>
+  </main>
+  <footer>
+    <p>&copy; 2024 ATHLO. Todos los derechos reservados.</p>
+  </footer>
+  <script>
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      let timeout;
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          dropdown.classList.remove('open');
+        }, 120);
+      });
+      dropdown.addEventListener('focusin', function() {
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('focusout', function() {
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.classList.remove('open');
+          }
+        }, 120);
+      });
+    });
+  </script>
+  <script src="bot-copy2-widget.js"></script>
+</body>
+</html> 

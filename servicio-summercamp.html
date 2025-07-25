@@ -9,6 +9,18 @@
 <body>
   <nav class="main-navbar">
     <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.2rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropbtn">Servicios</a>
         <div class="dropdown-content">
@@ -40,7 +52,7 @@
       <li>Actividades de integración y liderazgo</li>
       <li>Charlas motivacionales y talleres de desarrollo personal</li>
     </ul>
-    <form class="apply-form" action="https://formspree.io/f/xzzvdqwo" method="POST" style="margin-bottom:2rem;">
+    <form class="apply-form" id="form-summercamp" action="https://formspree.io/f/xzzvdqwo" method="POST" style="margin-bottom:2rem;">
       <input type="hidden" name="servicio" value="Summer camp">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>
@@ -56,7 +68,7 @@
       <label for="fecha_nacimiento">Fecha de nacimiento</label>
       <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
       <label for="ano_graduacion">Año de graduación</label>
-      <input type="number" id="ano_graduacion" name="ano_graduacion" min="2024" max="2100" required>
+      <input type="number" id="ano_graduacion" name="ano_graduacion" required>
       <label for="institucion">Institución educativa</label>
       <input type="text" id="institucion" name="institucion" required>
       <label for="posicion">Posición</label>
@@ -67,6 +79,29 @@
       <input type="tel" id="telefono" name="telefono" required>
       <button type="submit">Aplicar</button>
     </form>
+    <script>
+  document.getElementById('form-summercamp').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const action = form.action;
+    try {
+      const response = await fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.reset();
+        window.location.href = 'exito.html';
+      } else {
+        alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+      }
+    } catch (error) {
+      alert('Hubo un error al enviar tu solicitud. Intenta nuevamente.');
+    }
+  });
+</script>
     <a href="index.html#aplicar" class="cta-small" style="margin-bottom:1.2rem;">Aplicar ya</a>
     <br>
     <a href="index.html" class="cta-small">Volver al inicio</a>
@@ -74,5 +109,6 @@
   <footer>
     <p>&copy; 2024 ATHLO. Todos los derechos reservados.</p>
   </footer>
+  <script src="bot-copy2-widget.js"></script>
 </body>
 </html> 

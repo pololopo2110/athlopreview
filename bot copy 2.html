@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai Chatbot - Gemini 1.5 Flash</title>
+  <style>
+    :root {
+      --grey: #828282;
+      --black: #000;
+      --white: #fff;
+      --gray: #181818;
+    }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #181818 0%, #232323 100%);
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chat-container {
+      background: var(--gray);
+      border-radius: 28px;
+      box-shadow: 0 12px 40px 0 rgba(0,0,0,0.55), 0 0 0 2.5px var(--grey);
+      border: none;
+      width: 100%;
+      max-width: 410px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 72vh;
+      min-height: 480px;
+      overflow: hidden;
+      position: relative;
+      animation: chat-fadein 0.7s cubic-bezier(.4,1.4,.6,1) 1;
+    }
+    @keyframes chat-fadein {
+      from { opacity: 0; transform: translateY(40px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+    .chat-header {
+      background: var(--black);
+      color: var(--grey);
+      font-weight: 800;
+      font-size: 1.25em;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 22px 0 14px 0;
+      border-bottom: 1.5px solid var(--grey);
+      border-radius: 28px 28px 0 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      border-bottom: 1px solid var(--grey);
+      background: var(--gray);
+    }
+    .message {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      font-size: 1em;
+    }
+    .user {
+      align-self: flex-end;
+      background: rgba(203,161,53,0.13);
+      color: var(--white);
+      border-radius: 16px 16px 0 16px;
+      padding: 10px 18px;
+      max-width: 80%;
+      width: fit-content;
+      min-width: 40px;
+      word-break: break-word;
+      border: 1px solid var(--grey);
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .bot {
+      align-self: flex-start;
+      background: #232323;
+      color: var(--white);
+      border-radius: 16px 16px 16px 0;
+      padding: 16px 22px 16px 18px;
+      max-width: 80%;
+      width: fit-content;
+      min-width: 40px;
+      word-break: break-word;
+      border: 1px solid #2d2d2d;
+      position: relative;
+      margin-right: auto;
+      margin-left: 0;
+      box-shadow: 0 2px 8px rgba(203,161,53,0.07);
+    }
+    .bot::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -7px;
+      top: 18px;
+      width: 4px;
+      height: 32px;
+      border-radius: 3px;
+      background: var(--grey);
+      opacity: 0.7;
+    }
+    .chat-input {
+      display: flex;
+      padding: 12px;
+      background: var(--black);
+      border-radius: 0 0 18px 18px;
+      border-top: 1px solid var(--grey);
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1.5px solid var(--grey);
+      border-radius: 8px;
+      font-size: 1em;
+      outline: none;
+      background: var(--gray);
+      color: var(--white);
+    }
+    .chat-input button {
+      margin-left: 8px;
+      padding: 10px 18px;
+      background: transparent;
+      color: var(--grey);
+      border: 2px solid var(--grey);
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(203,161,53,0.10);
+    }
+    .chat-input button:hover {
+      background: var(--grey);
+      color: var(--black);
+      box-shadow: 0 0 0 4px rgba(203,161,53,0.18), 0 2px 8px rgba(203,161,53,0.10);
+      animation: pulse-btn 0.5s;
+    }
+    @keyframes pulse-btn {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    .chat-input button:disabled {
+      background: #aaaaaa;
+      color: #eee;
+      cursor: not-allowed;
+    }
+    .chat-logo {
+      display: block;
+      margin: 0 auto 12px auto;
+      max-width: 180px;
+      max-height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" role="main" aria-label="Chatbot Gemini">
+    <div class="chat-header"><img src="LOGO ATHLO assist.png" alt="ATHLO Logo" class="chat-logo"></div>
+    <div class="chat-messages" id="chatMessages" tabindex="0" aria-live="polite"></div>
+    <form class="chat-input" id="chatForm" autocomplete="off">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." aria-label="Mensaje" required />
+      <button type="submit" id="sendBtn">Enviar</button>
+    </form>
+  </div>
+  <script>
+    const API_KEY = 'AIzaSyCpq8wbHhQ5JXsYY3jzGAa2hO-AVeAgAOU';
+    const MODEL = 'gemini-1.5-flash';
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    /* Quitar glow y dejar bienvenida simple */
+    /* .chat-container::before y .bot.welcome .welcome-icon eliminados */
+    function showWelcome() {
+      const welcome = document.createElement('div');
+      welcome.className = 'message bot welcome';
+      welcome.textContent = '¡Bienvenido a ATHLO! Somos especialistas en entrenamiento y reclutamiento de futbolistas para oportunidades nacionales e internacionales. ¿En qué podemos ayudarte con tu carrera deportiva o universitaria?';
+      chatMessages.appendChild(welcome);
+    }
+
+    // Burbujita de tres puntitos animados
+    let typingIndicator = null;
+    function showTypingIndicator() {
+      if (typingIndicator) return;
+      typingIndicator = document.createElement('div');
+      typingIndicator.className = 'message bot typing-indicator';
+      typingIndicator.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+      chatMessages.appendChild(typingIndicator);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function removeTypingIndicator() {
+      if (typingIndicator) {
+        typingIndicator.remove();
+        typingIndicator = null;
+      }
+    }
+
+    // Typing effect para la respuesta del bot
+    async function typeBotMessage(text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'message bot';
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      // Procesar texto para bullets y negrita
+      let html = text
+        // Primero reemplaza **bold** por <strong>
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        // Luego reemplaza *bold* por <strong> (solo si no está rodeado de más asteriscos)
+        .replace(/(^|\s)\*([^*]+)\*(?=\s|$)/g, '$1<strong>$2</strong>')
+        // Elimina cualquier asterisco suelto que quede
+        .replace(/\*/g, '');
+      // Si el texto tiene saltos de línea o guiones, mostrar como lista
+      if (/\n|\u2022|\-/g.test(html)) {
+        let items = html.split(/\n|\u2022|\-/g).map(s => s.trim()).filter(Boolean);
+        html = '<ul style="margin:0 0 0 1.2em;padding:0;">' + items.map(i => `<li style='margin-bottom:6px;'>${i}</li>`).join('') + '</ul>';
+      }
+      // Typing effect sobre HTML
+      let i = 0;
+      let output = '';
+      let tag = false;
+      while (i < html.length) {
+        const char = html[i];
+        if (char === '<') tag = true;
+        if (!tag) {
+          output += char;
+          msgDiv.innerHTML = output + '<span class="typing-cursor">|</span>';
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          await new Promise(r => setTimeout(r, 14));
+        } else {
+          output += char;
+          if (char === '>') tag = false;
+        }
+        i++;
+      }
+      msgDiv.innerHTML = output;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${sender}`;
+      msgDiv.textContent = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    async function sendMessageToGemini(message) {
+      const body = {
+        contents: [{ parts: [{ text: message }] }]
+      };
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error('Error en la API');
+        const data = await res.json();
+        const botMsg = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sin respuesta.';
+        return botMsg;
+      } catch (err) {
+        return 'Ocurrió un error al contactar a Gemini.';
+      }
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (!message) return;
+      addMessage(message, 'user');
+      userInput.value = '';
+      sendBtn.disabled = true;
+      showTypingIndicator();
+      const botMsg = await sendMessageToGemini(message);
+      removeTypingIndicator();
+      await typeBotMessage(botMsg);
+      sendBtn.disabled = false;
+    });
+
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        chatForm.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
+    });
+
+    // Animación CSS para los tres puntitos
+    const style = document.createElement('style');
+    style.textContent = `
+      .typing-indicator {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        min-width: 40px;
+        min-height: 28px;
+        padding: 8px 18px;
+        background: #232323;
+        border-radius: 16px 16px 16px 0;
+        border: 1px solid #2d2d2d;
+        margin-bottom: 8px;
+        width: fit-content;
+        box-shadow: 0 2px 8px rgba(203,161,53,0.04);
+      }
+      .typing-indicator .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--grey, #828282);
+        display: inline-block;
+        margin: 0 2px;
+        animation: typing-bounce 1.2s infinite both;
+      }
+      .typing-indicator .dot:nth-child(1) { animation-delay: 0s; }
+      .typing-indicator .dot:nth-child(2) { animation-delay: 0.2s; }
+      .typing-indicator .dot:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes typing-bounce {
+        0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+        40% { transform: translateY(-7px); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Mostrar mensaje de bienvenida al cargar
+    window.addEventListener('DOMContentLoaded', showWelcome);
+  </script>
+</body>
+</html>

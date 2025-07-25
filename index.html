@@ -11,6 +11,18 @@
   <!-- Barra de navegación superior -->
   <nav class="main-navbar">
     <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.1rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
       <li class="dropdown">
         <a href="#" class="dropbtn">Servicios</a>
         <div class="dropdown-content">
@@ -23,7 +35,7 @@
           <a href="servicio-torneos.html">Torneos</a>
         </div>
       </li>
-      <li><a href="#about">Quiénes Somos</a></li>
+      <li><a href="merch.html">Merch</a></li>
       <li><a href="#programas">Programas</a></li>
       <li><a href="#testimonios">Testimonios</a></li>
       <li><a href="#galeria">Galería</a></li>
@@ -34,58 +46,33 @@
   <!-- Hero Section -->
   <header class="logo-hero hero" style="position:relative;">
     <div class="logo-bg-img"></div>
-    <img id="logo-img" src="logo-blanco.PNG" alt="Highlights Logo" class="logo-img" onerror="this.style.display='none';document.getElementById('logo-error').style.display='block';" style="position:relative;z-index:2;" />
+    <img id="logo-img" src="logo-blanco.PNG" alt="Highlights Logo" class="logo-img logo-anim" onerror="this.style.display='none';document.getElementById('logo-error').style.display='block';" style="position:relative;z-index:2;" />
     <div id="logo-error" style="display:none;color:#fff;text-align:center;margin-top:2rem;z-index:2;position:relative;">No se pudo cargar el logo. Asegúrate de que el archivo <b>logo-blanco.PNG</b> esté en la misma carpeta que <b>index.html</b> y que el nombre sea exacto.</div>
   </header>
 
-  <!-- Quiénes Somos -->
-  <section class="about" id="about">
-    <h2>Nuestra Misión y Visión</h2>
-    <div class="about-content">
-      <div class="about-icons">
-        <div class="about-icon-item" onclick="openModal('academico')">
-          <h3>Desarrollo Académico</h3>
-          <p>Formación integral y excelencia educativa</p>
-        </div>
-        <div class="about-icon-item" onclick="openModal('atletico')">
-          <h3>Excelencia Atlética</h3>
-          <p>Entrenamiento de alto rendimiento</p>
-        </div>
-        <div class="about-icon-item" onclick="openModal('mentoria')">
-          <h3>Mentoría y Reclutamiento</h3>
-          <p>Guía hacia el deporte universitario</p>
-        </div>
-      </div>
-      <p><strong>Misión:</strong> Empoderar a jóvenes talentos deportivos para alcanzar su máximo potencial atlético y académico, facilitando su transición y éxito en el deporte universitario. <br><strong>Visión:</strong> Ser líderes en el desarrollo integral de atletas estudiantiles en RD e internacionalmente, conectando talento local con oportunidades educativas y deportivas de alto nivel. <br><strong>Alianza:</strong> Socio Oficial de Reclutamiento de la <a href="https://www.njcaa.org/sports/msoc/index" target="_blank" rel="noopener" style="color:#4faaff;text-decoration:underline;">NJCAA</a>.</p>
-    </div>
-  </section>
-
   <!-- Programas -->
   <section class="programs" id="programas">
-    <h2>Programas Destacados</h2>
+    <h2>Programas</h2>
     <div class="program-cards">
       <a href="registro.html" class="card" style="text-decoration:none;">
-        <img src="athlete-dev.jpg" alt="Desarrollo de Atletas">
-        <h3>Desarrollo de Atletas</h3>
+        <p><strong>Desarrollo de Atletas</strong></p>
         <p>Entrenamiento de alto rendimiento, técnica y formación integral para jóvenes deportistas.</p>
         <span class="cta-small">Inscribirse</span>
       </a>
       <a href="registro.html" class="card" style="text-decoration:none;">
-        <img src="recruitment.jpg" alt="Reclutamiento Universitario">
-        <h3>Reclutamiento Universitario</h3>
+        <p><strong>Reclutamiento Universitario</strong></p>
         <p>Mentoría y conexión con universidades. ¡BECOME A STUDENT-ATHLETE!</p>
         <span class="cta-small">Inscribirse</span>
       </a>
       <a href="registro.html" class="card" style="text-decoration:none;">
-        <img src="camp.jpg" alt="Campamentos">
-        <h3>Campamentos</h3>
+        <p><strong>Campamentos</strong></p>
         <p>HIGHLIGHTS SUMMER CAMP 2025 CAP CANA. <br> <strong>¡SOLO QUEDAN 2 SEMANAS!</strong></p>
         <span class="cta-small">Inscribirse</span>
       </a>
-      <a href="registro.html" class="card" style="text-decoration:none;">
-        <img src="events.jpg" alt="Eventos">
-        <h3>Eventos</h3>
-        <p>Propella Cup, MIC Football, MATCHDAY #!</p>
+      <div style="grid-column: 2 / 3;"></div>
+      <a href="registro.html" class="card" style="text-decoration:none; grid-row: 2; grid-column: 2 / 3;">
+        <p><strong>Eventos</strong></p>
+        <p>Propella Cup, MIC Football, MATCHDAY!</p>
         <span class="cta-small">Inscribirse</span>
       </a>
     </div>
@@ -96,14 +83,21 @@
     <h2>Testimonios</h2>
     <div class="testimonial-cards">
       <div class="testimonial">
-        <img src="athlete1.jpg" alt="Testimonio 1">
-        <blockquote>"Gracias a Highlights RD conseguí una beca y crecí como atleta y estudiante."</blockquote>
-        <cite>- Juan Pérez</cite>
+        <img src="foto-estudiante.PNG" alt="Testimonio Student-Athlete">
+        <blockquote>"Gracias a Athlo conseguí una beca, crecí como atleta y estudiante, y aprendí a superar mis propios límites. El acompañamiento y las oportunidades que me brindaron marcaron una diferencia real en mi vida deportiva y académica. Recomiendo Athlo a todos los jóvenes que sueñan en grande."</blockquote>
+        <cite>- Ana Martínez (Student-Athlete)</cite>
       </div>
       <div class="testimonial">
-        <img src="athlete2.jpg" alt="Testimonio 2">
-        <blockquote>"El campamento fue una experiencia inolvidable, aprendí y me divertí mucho."</blockquote>
-        <cite>- María Gómez</cite>
+        <img src="foto-madre.PNG" alt="Testimonio Madre">
+        <blockquote>"Ver a mi hijo crecer en lo deportivo y académico ha sido increíble. ATHLO le dio confianza y valores que lo han hecho destacar. Muy agradecida por el apoyo y dedicación del equipo. Sin duda, recomendaría este programa a cualquier familia que busque el mejor desarrollo para sus hijos."</blockquote>
+        <cite>- María Gómez (Madre de participante)</cite>
+      </div>
+      <div class="testimonial">
+        <div style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem auto;">
+          <img src="foto-entrenador-nueva.png" alt="Testimonio Entrenador" style="width:80px;height:80px;object-fit:cover;border-radius:50%;border:3px solid #fff;display:block;">
+        </div>
+        <blockquote>"Como entrenador, recomiendo ATHLO por su compromiso real con el desarrollo de los jóvenes. Su acompañamiento y metodología ayudan a formar atletas y personas responsables. Es una gran oportunidad para cualquier deportista."</blockquote>
+        <cite>- Carlos Ramírez (Entrenador)</cite>
       </div>
     </div>
   </section>
@@ -111,14 +105,29 @@
   <!-- Galería -->
   <section class="gallery" id="galeria">
     <h2>Nuestros Momentos Destacados</h2>
-    <div class="gallery-grid">
-      <img src="gallery1.jpg" alt="Galería 1">
-      <img src="gallery2.jpg" alt="Galería 2">
-      <video controls poster="gallery3.jpg">
-        <source src="gallery3.mp4" type="video/mp4">
-      </video>
-      <img src="gallery4.jpg" alt="Galería 4">
-      <img src="gallery5.jpg" alt="Galería 5">
+    <div class="athlo-slider">
+      <img class="athlo-slide active" src="foto-athlo1.jpeg" alt="ATHLO 1">
+      <img class="athlo-slide" src="foto-athlo2.jpeg" alt="ATHLO 2">
+      <img class="athlo-slide" src="foto-athlo3.jpeg" alt="ATHLO 3">
+      <img class="athlo-slide" src="foto-athlo4.jpeg" alt="ATHLO 4">
+      <img class="athlo-slide" src="foto-athlo5.jpeg" alt="ATHLO 5">
+      <img class="athlo-slide" src="foto-athlo6.jpeg" alt="ATHLO 6">
+      <img class="athlo-slide" src="foto-athlo7.jpeg" alt="ATHLO 7">
+      <img class="athlo-slide" src="foto-athlo8.jpeg" alt="ATHLO 8">
+      <img class="athlo-slide" src="foto-athlo9.jpeg" alt="ATHLO 9">
+      <img class="athlo-slide" src="foto-athlo10.jpeg" alt="ATHLO 10">
+      <img class="athlo-slide" src="foto-athlo11.jpeg" alt="ATHLO 11">
+      <img class="athlo-slide" src="foto-athlo12.jpeg" alt="ATHLO 12">
+      <img class="athlo-slide" src="foto-athlo13.jpeg" alt="ATHLO 13">
+      <img class="athlo-slide" src="foto-athlo14.jpeg" alt="ATHLO 14">
+      <img class="athlo-slide" src="foto-athlo15.jpeg" alt="ATHLO 15">
+      <img class="athlo-slide" src="foto-athlo16.jpeg" alt="ATHLO 16">
+      <img class="athlo-slide" src="foto-athlo17.jpeg" alt="ATHLO 17">
+      <img class="athlo-slide" src="foto-athlo18.jpeg" alt="ATHLO 18">
+      <img class="athlo-slide" src="foto-athlo19.jpeg" alt="ATHLO 19">
+      <img class="athlo-slide" src="foto-athlo20.jpeg" alt="ATHLO 20">
+      <button class="athlo-slider-btn prev" aria-label="Anterior">&#10094;</button>
+      <button class="athlo-slider-btn next" aria-label="Siguiente">&#10095;</button>
     </div>
   </section>
 
@@ -365,9 +374,7 @@
     // Animación de entrada: primero la foto, luego el logo
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
-        var logo = document.getElementById('logo-img');
-        logo.style.opacity = 1;
-        logo.style.transform = 'scale(1)';
+        document.getElementById('logo-img').classList.add('visible');
       }, 1000);
     });
 
@@ -440,6 +447,83 @@
       document.getElementById('apply-success').style.display = 'none';
       document.querySelector('.apply-form').style.display = 'flex';
     }
+
+    // --- Mantener abierto el dropdown mientras el mouse esté sobre el botón o el menú ---
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      let timeout;
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          dropdown.classList.remove('open');
+        }, 120); // pequeño retardo para permitir mover el mouse entre botón y menú
+      });
+      // También mantener abierto si se navega con teclado
+      dropdown.addEventListener('focusin', function() {
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('focusout', function() {
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.classList.remove('open');
+          }
+        }, 120);
+      });
+    });
+  </script>
+  <script src="bot-copy2-widget.js"></script>
+  <script>
+    // ATHLO Gallery Slider
+    (function() {
+      const slides = document.querySelectorAll('.athlo-slide');
+      const prevBtn = document.querySelector('.athlo-slider-btn.prev');
+      const nextBtn = document.querySelector('.athlo-slider-btn.next');
+      let current = 0;
+      let interval = null;
+      const FADE_TIME = 700; // ms
+      const AUTO_TIME = 3500; // ms
+
+      function showSlide(idx) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === idx);
+        });
+        current = idx;
+      }
+
+      function nextSlide() {
+        showSlide((current + 1) % slides.length);
+      }
+
+      function prevSlide() {
+        showSlide((current - 1 + slides.length) % slides.length);
+      }
+
+      function startAuto() {
+        if (interval) clearInterval(interval);
+        interval = setInterval(nextSlide, AUTO_TIME);
+      }
+
+      function stopAuto() {
+        if (interval) clearInterval(interval);
+      }
+
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAuto();
+      });
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAuto();
+      });
+      document.querySelector('.athlo-slider').addEventListener('mouseenter', stopAuto);
+      document.querySelector('.athlo-slider').addEventListener('mouseleave', startAuto);
+
+      // Init
+      showSlide(0);
+      startAuto();
+    })();
   </script>
 </body>
 </html> 

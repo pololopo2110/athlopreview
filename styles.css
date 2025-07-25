@@ -213,8 +213,8 @@ section h2 {
   color: #000;
 }
 .testimonial img {
-  width: 80px;
-  height: 80px;
+  width: 80px !important;
+  height: 80px !important;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 1.5rem;
@@ -621,6 +621,15 @@ body.light-mode .logo-subtitle {
   position: relative;
   overflow: hidden;
 }
+.logo-anim {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.9s cubic-bezier(.4,0,.2,1), transform 0.9s cubic-bezier(.4,0,.2,1);
+}
+.logo-anim.visible {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* Intro Section */
 .intro {
@@ -656,12 +665,21 @@ body.light-mode .logo-subtitle {
 }
 .main-navbar ul {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2.5rem;
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+}
+.navbar-logo {
+  margin-right: 2.2rem;
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  display: flex;
+  align-items: center;
+}
+.navbar-logo img {
+  height: 54px;
+  width: auto;
+  display: block;
 }
 .main-navbar li {
   display: inline-block;
@@ -685,7 +703,10 @@ body.light-mode .logo-subtitle {
 }
 @media (max-width: 700px) {
   .main-navbar ul {
-    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+  .navbar-logo {
+    margin-right: 1rem;
   }
   .main-navbar a {
     font-size: 0.98rem;
@@ -948,6 +969,29 @@ body.light-mode .logo-subtitle {
   display: block;
 } 
 
+/* --- Mejorar dropdown para mantener abierto mientras el mouse esté sobre el menú o el botón --- */
+.dropdown {
+  position: relative;
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content,
+.dropdown.open .dropdown-content {
+  display: block;
+}
+
+/* Opcional: transición suave para el dropdown */
+.dropdown-content {
+  transition: opacity 0.18s;
+  opacity: 0;
+  pointer-events: none;
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content,
+.dropdown.open .dropdown-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* Detalle de servicio individual */
 .service-detail {
   max-width: 600px;
@@ -1018,4 +1062,290 @@ body.light-mode .logo-subtitle {
   .service-detail h1 {
     font-size: 1.3rem;
   }
+} 
+
+.about-block {
+  background: #18181b;
+  border: 1px solid #333;
+  border-radius: 10px;
+  margin: 1.1rem 0;
+  padding: 1.1rem 1.2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-block p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.08rem;
+  line-height: 1.6;
+} 
+
+/* ATHLO Gallery Slider */
+.athlo-slider {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  height: 420px;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.athlo-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), visibility 0.7s cubic-bezier(.4,0,.2,1);
+  z-index: 1;
+  pointer-events: none;
+}
+.athlo-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  pointer-events: auto;
+}
+.athlo-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.38);
+  color: #fff;
+  border: none;
+  font-size: 2.2rem;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.athlo-slider-btn.prev { left: 18px; }
+.athlo-slider-btn.next { right: 18px; }
+.athlo-slider-btn:hover {
+  background: #fff;
+  color: #000;
+}
+@media (max-width: 800px) {
+  .athlo-slider { max-width: 98vw; height: 48vw; min-height: 220px; }
+}
+@media (max-width: 500px) {
+  .athlo-slider { height: 180px; }
+} 
+
+/* Merch Page Styles */
+.merch-list {
+  margin-top: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px 40px 20px;
+}
+.merch-list h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+}
+.merch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+}
+.merch-item {
+  background: #18181b;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.merch-item img {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  padding: 16px;
+  display: block;
+}
+.merch-item h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.merch-item label {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 600;
+}
+.merch-size {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #fff;
+  background: #18181b;
+  color: #fff;
+}
+.add-to-cart {
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.add-to-cart:hover {
+  background: #4faaff;
+  color: #fff;
+}
+.cart-link {
+  margin-left: 1.5rem;
+  font-size: 1.3rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.cart-link:hover {
+  color: #4faaff;
+}
+@media (max-width: 700px) {
+  .merch-grid { flex-direction: column; align-items: center; }
+  .merch-item { width: 98vw; max-width: 340px; }
+} 
+
+/* Cart Page Styles */
+.cart-list {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 20px 40px 20px;
+}
+.cart-list h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: #18181b;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.5rem;
+}
+.cart-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #fff;
+  margin-right: 1.5rem;
+}
+.cart-info {
+  flex: 1;
+  color: #fff;
+}
+.cart-info h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+.cart-info p {
+  margin: 0 0 0.7rem 0;
+}
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+.qty-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.qty-btn:hover {
+  background: #4faaff;
+  color: #fff;
+}
+.remove-btn {
+  background: #c00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.remove-btn:hover {
+  background: #ff4444;
+}
+@media (max-width: 700px) {
+  .cart-item { flex-direction: column; align-items: flex-start; }
+  .cart-img { margin-bottom: 1rem; margin-right: 0; }
+} 
+
+/* Badge para el contador del carrito */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 7px;
+  min-width: 22px;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+
+/* Animación bounce para el botón de agregar al carrito */
+@keyframes bounce {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.2); }
+  40% { transform: scale(0.95); }
+  60% { transform: scale(1.1); }
+  80% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+.add-to-cart.bounce {
+  animation: bounce 0.5s;
+}
+
+/* Posición relativa para el ítem del carrito en navbar */
+.main-navbar .cart-link {
+  position: relative;
 } 

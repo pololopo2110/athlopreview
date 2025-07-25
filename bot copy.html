@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai Chatbot - Gemini 1.5 Flash</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .chat-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+      margin: 40px 0;
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      border-bottom: 1px solid #eee;
+    }
+    .message {
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+    }
+    .user {
+      align-self: flex-end;
+      background: #d1e7ff;
+      color: #222;
+      border-radius: 12px 12px 0 12px;
+      padding: 8px 14px;
+      max-width: 80%;
+    }
+    .bot {
+      align-self: flex-start;
+      background: #f0f0f0;
+      color: #333;
+      border-radius: 12px 12px 12px 0;
+      padding: 8px 14px;
+      max-width: 80%;
+    }
+    .chat-input {
+      display: flex;
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 0 0 10px 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      outline: none;
+    }
+    .chat-input button {
+      margin-left: 8px;
+      padding: 10px 18px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .chat-input button:disabled {
+      background: #b3d1ff;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container" role="main" aria-label="Chatbot Gemini">
+    <div class="chat-messages" id="chatMessages" tabindex="0" aria-live="polite"></div>
+    <form class="chat-input" id="chatForm" autocomplete="off">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." aria-label="Mensaje" required />
+      <button type="submit" id="sendBtn">Enviar</button>
+    </form>
+  </div>
+  <script>
+    const API_KEY = 'AIzaSyCpq8wbHhQ5JXsYY3jzGAa2hO-AVeAgAOU';
+    const MODEL = 'gemini-1.5-flash';
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // Accesibilidad: enfoca el área de mensajes al recibir respuesta
+    function focusMessages() {
+      chatMessages.focus();
+    }
+
+    function addMessage(text, sender) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${sender}`;
+      msgDiv.textContent = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      focusMessages();
+    }
+
+    async function sendMessageToGemini(message) {
+      const body = {
+        contents: [{ parts: [{ text: message }] }]
+      };
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error('Error en la API');
+        const data = await res.json();
+        // Gemini responde en data.candidates[0].content.parts[0].text
+        const botMsg = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sin respuesta.';
+        return botMsg;
+      } catch (err) {
+        return 'Ocurrió un error al contactar a Gemini.';
+      }
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (!message) return;
+      addMessage(message, 'user');
+      userInput.value = '';
+      sendBtn.disabled = true;
+      addMessage('Pensando...', 'bot');
+      const botMsg = await sendMessageToGemini(message);
+      // Reemplaza el último mensaje (Pensando...) con la respuesta real
+      const lastBotMsg = chatMessages.querySelector('.message.bot:last-child');
+      if (lastBotMsg) lastBotMsg.textContent = botMsg;
+      sendBtn.disabled = false;
+    });
+
+    // Accesibilidad: enviar con Enter
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        chatForm.dispatchEvent(new Event('submit', { cancelable: true }));
+      }
+    });
+  </script>
+</body>
+</html>

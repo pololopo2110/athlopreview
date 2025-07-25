@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito | ATHLO Merch</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cart-list {
+      max-width: 700px;
+      margin: 100px auto 40px auto;
+      background: #18181b;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      padding: 2.5rem 2rem 2rem 2rem;
+      color: #fff;
+    }
+    .cart-list h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      color: #fff;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      background: #222;
+      border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+      margin-bottom: 2rem;
+      padding: 1.2rem 1.5rem;
+    }
+    .cart-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #fff;
+      margin-right: 1.5rem;
+    }
+    .cart-info {
+      flex: 1;
+      color: #fff;
+    }
+    .cart-info h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .cart-info p {
+      margin: 0 0 0.7rem 0;
+    }
+    .cart-total {
+      text-align: right;
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      color: #fff;
+      font-weight: bold;
+    }
+    .buy-btn {
+      display: block;
+      margin: 2.5rem auto 0 auto;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .buy-btn:hover {
+      background: #4faaff;
+      color: #fff;
+    }
+    .order-success {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 1.3rem;
+      color: #4faaff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-navbar">
+    <ul>
+      <li class="navbar-logo"><a href="index.html">ATHLO</a></li>
+      <li><a href="merch.html">Merch</a></li>
+      <li><a href="carrito.html" class="cart-link" style="font-size:1.3rem;">🛒 <span class="cart-badge" id="cart-badge" style="display:none;">0</span>Carrito</a></li>
+    </ul>
+  </nav>
+  <div class="cart-list" id="cart-list">
+    <!-- El contenido se llenará por JS -->
+  </div>
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('athlo_cart') || '[]');
+      const cont = document.getElementById('cart-list');
+      // Actualizar badge del carrito
+      const badge = document.getElementById('cart-badge');
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
+      if (badge) {
+        if (total > 0) {
+          badge.textContent = total;
+          badge.style.display = 'inline-block';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+      if (!cart.length) {
+        cont.innerHTML = '<h2>Tu carrito está vacío</h2>';
+        return;
+      }
+      let totalPrice = 0;
+      let html = '<h2>Tu Carrito</h2>';
+      cart.forEach((item, idx) => {
+        let price = 25;
+        let priceHtml = '';
+        if (item.product.includes('Hoodie')) price = 45;
+        if (item.product.includes('Crewneck')) {
+          price = 28;
+          priceHtml = '<span style="color:#ffb300;font-weight:bold;">Edición Limitada</span><br><span style="text-decoration:line-through;color:#aaa;">$35.00 USD</span> <span style="color:#4faaff;font-weight:bold;">$28.00 USD</span> <span style="font-size:0.95em;color:#4faaff;">-20%</span>';
+        } else {
+          priceHtml = `$${price}.00 USD`;
+        }
+        const subtotal = price * item.qty;
+        totalPrice += subtotal;
+        html += `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.product}" class="cart-img">
+            <div class="cart-info">
+              <h4>${item.product}</h4>
+              <p>Talla: <b>${item.size}</b></p>
+              <p>Precio: ${priceHtml}</p>
+              <div style="display:flex;align-items:center;gap:0.7rem;margin:0.7rem 0;">
+                <button class="qty-btn" data-idx="${idx}" data-action="dec">-</button>
+                <span>${item.qty}</span>
+                <button class="qty-btn" data-idx="${idx}" data-action="inc">+</button>
+                <button class="remove-btn" data-idx="${idx}" title="Eliminar producto">🗑️</button>
+              </div>
+              <p>Subtotal: $${subtotal}.00 USD</p>
+            </div>
+          </div>
+        `;
+      });
+      html += `<div class="cart-total">Total: $${totalPrice}.00 USD</div>`;
+      html += `<button class="buy-btn">Comprar</button>`;
+      cont.innerHTML = html;
+      // Listeners para cantidad y eliminar
+      cont.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const idx = +btn.getAttribute('data-idx');
+          const action = btn.getAttribute('data-action');
+          if (action === 'inc') cart[idx].qty++;
+          if (action === 'dec') {
+            if (cart[idx].qty > 1) {
+              cart[idx].qty--;
+            } else {
+              cart.splice(idx, 1);
+            }
+          }
+          localStorage.setItem('athlo_cart', JSON.stringify(cart));
+          renderCart();
+        });
+      });
+      cont.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const idx = +btn.getAttribute('data-idx');
+          cart.splice(idx, 1);
+          localStorage.setItem('athlo_cart', JSON.stringify(cart));
+          renderCart();
+        });
+      });
+      cont.querySelector('.buy-btn').addEventListener('click', function() {
+        // Mostrar formulario de datos de envío
+        cont.innerHTML = `
+          <h2>Datos de Envío</h2>
+          <form id="order-form" style="max-width:400px;margin:2rem auto 0 auto;display:flex;flex-direction:column;gap:1.2rem;">
+            <input type="text" name="nombre" placeholder="Nombre completo" required style="padding:0.8rem 1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;">
+            <input type="email" name="correo" placeholder="Correo electrónico" required style="padding:0.8rem 1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;">
+            <textarea name="direccion" placeholder="Dirección de envío" required style="padding:0.8rem 1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;min-height:80px;"></textarea>
+            <input type="hidden" name="pedido" value='${cart.map(item => `${item.product} (Talla: ${item.size}) x${item.qty}`).join(', ')}'>
+            <input type="hidden" name="total" value='$${totalPrice}.00 USD'>
+            <button type="submit" style="background:#4faaff;color:#fff;font-weight:bold;padding:1rem 0;border-radius:8px;font-size:1.1rem;border:none;cursor:pointer;">Enviar pedido</button>
+          </form>
+        `;
+        const form = document.getElementById('order-form');
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const data = new FormData(form);
+          fetch('https://formspree.io/f/xzzvdqwo', {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(response => {
+            if (response.ok) {
+              localStorage.removeItem('athlo_cart');
+              cont.innerHTML = '<div class="order-success">¡Tu orden ha sido procesada! 🎉</div>';
+            } else {
+              cont.innerHTML = '<div class="order-success" style="color:#c00;">Hubo un error al procesar tu orden. Intenta de nuevo.</div>';
+            }
+          })
+          .catch(() => {
+            cont.innerHTML = '<div class="order-success" style="color:#c00;">Hubo un error al procesar tu orden. Intenta de nuevo.</div>';
+          });
+        });
+      });
+    }
+    document.addEventListener('DOMContentLoaded', renderCart);
+  </script>
+</body>
+</html> 

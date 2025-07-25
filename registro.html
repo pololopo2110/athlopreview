@@ -8,6 +8,39 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <nav class="main-navbar">
+    <ul>
+      <li class="navbar-logo">
+        <a href="index.html" style="font-family: 'Montserrat', 'Oswald', Arial, sans-serif; font-weight:900; font-size:2.1rem; letter-spacing:2px; color:#fff; text-decoration:none;">ATHLO</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">¿Quiénes somos?</a>
+        <div class="dropdown-content">
+          <a href="quienes-somos.html">Quiénes somos</a>
+          <a href="mision.html">Misión</a>
+          <a href="valores.html">Valores</a>
+          <a href="alianza.html">Nuestra alianza</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Servicios</a>
+        <div class="dropdown-content">
+          <a href="servicio-desarrollo.html">Desarrollo de jugadores</a>
+          <a href="servicio-college.html">College program</a>
+          <a href="servicio-summercamp.html">Summer camp</a>
+          <a href="servicio-wintercamp.html">Winter camp</a>
+          <a href="servicio-psicologicas.html">Charlas psicológicas</a>
+          <a href="servicio-amistosos.html">Amistosos</a>
+          <a href="servicio-torneos.html">Torneos</a>
+        </div>
+      </li>
+      <li><a href="#programas">Programas</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#aplicar">Aplicar</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
   <form class="registration-form" id="registroForm" action="https://formspree.io/f/xzzvdqwo" method="POST">
     <h2>Formulario de Registro</h2>
     <label for="email">Correo electrónico</label>
@@ -77,6 +110,30 @@
         document.getElementById('error-message').style.display = 'block';
       }
     });
+
+    document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+      let timeout;
+      dropdown.addEventListener('mouseenter', function() {
+        clearTimeout(timeout);
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+          dropdown.classList.remove('open');
+        }, 120);
+      });
+      dropdown.addEventListener('focusin', function() {
+        dropdown.classList.add('open');
+      });
+      dropdown.addEventListener('focusout', function() {
+        setTimeout(function() {
+          if (!dropdown.contains(document.activeElement)) {
+            dropdown.classList.remove('open');
+          }
+        }, 120);
+      });
+    });
   </script>
+  <script src="bot-copy2-widget.js"></script>
 </body>
 </html> 
