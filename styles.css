@@ -701,19 +701,18 @@ body.light-mode .logo-subtitle {
 .logo-hero {
   margin-top: 56px;
 }
-@media (max-width: 700px) {
+
+/* Media Queries para dispositivos móviles, tablets e iPads */
+@media (max-width: 1200px) {
   .main-navbar ul {
-    flex-wrap: wrap;
+    padding: 0 20px;
   }
   .navbar-logo {
-    margin-right: 1rem;
+    margin-right: 1.5rem;
   }
   .main-navbar a {
-    font-size: 0.98rem;
-    padding: 0.3rem 0.5rem;
-  }
-  .logo-hero {
-    margin-top: 44px;
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
   }
 }
 
@@ -729,19 +728,198 @@ body.light-mode .logo-subtitle {
     flex-direction: column;
     align-items: center;
   }
+  .service-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .athlo-slider {
+    max-width: 90vw;
+    height: 50vw;
+  }
 }
-@media (max-width: 600px) {
-  header.hero {
-    height: 60vh;
+
+@media (max-width: 768px) {
+  /* Tablets */
+  .main-navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navbar-logo {
+    margin-right: 1rem;
+  }
+  .main-navbar a {
+    font-size: 0.95rem;
+    padding: 0.3rem 0.5rem;
   }
   .hero-content h1 {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  .cta {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
   }
   section {
-    padding: 60px 15px 40px 15px;
+    padding: 60px 20px 40px 20px;
   }
-  .program-cards, .gallery-grid {
+  section h2 {
+    font-size: 2rem;
+  }
+  .program-cards {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .card {
+    padding: 1.5rem 1.2rem;
+  }
+  .testimonial-cards {
+    gap: 1.5rem;
+  }
+  .testimonial {
+    max-width: 100%;
+  }
+  .contact-form, .registration-form {
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+  }
+  .apply-form {
+    padding: 2rem 1.5rem;
+  }
+  .service-detail {
+    padding: 2rem 1.5rem;
+  }
+  .merch-grid {
+    gap: 2rem;
+  }
+  .merch-item {
+    width: 280px;
+  }
+  .cart-list {
+    padding: 80px 20px 40px 20px;
+  }
+  .athlo-slider {
+    max-width: 95vw;
+    height: 45vw;
+  }
+  .athlo-slider-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  /* Móviles grandes */
+  .main-navbar ul {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .navbar-logo {
+    margin-right: 0.8rem;
+  }
+  .main-navbar a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.4rem;
+  }
+  .logo-hero {
+    margin-top: 44px;
+    min-height: 50vh;
+  }
+  .logo-img {
+    width: 90vw;
+    max-width: 400px;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .cta {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+  }
+  section {
+    padding: 50px 15px 30px 15px;
+  }
+  section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .program-cards {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .card {
+    padding: 1.2rem 1rem;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+  }
+  .card p {
+    font-size: 0.9rem;
+  }
+  .testimonial-cards {
+    gap: 1.2rem;
+  }
+  .testimonial {
+    padding: 1.5rem 1.2rem;
+  }
+  .testimonial img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .contact-form, .registration-form {
+    max-width: 95%;
+    padding: 1.8rem 1.2rem;
+  }
+  .apply-form {
+    padding: 1.8rem 1.2rem;
+  }
+  .service-detail {
+    padding: 1.8rem 1.2rem;
+  }
+  .service-detail h1 {
+    font-size: 1.8rem;
+  }
+  .merch-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .merch-item {
+    width: 95vw;
+    max-width: 320px;
+    padding: 1.5rem 1.2rem;
+  }
+  .merch-item img {
+    width: 150px;
+    height: 150px;
+  }
+  .cart-list {
+    padding: 70px 15px 30px 15px;
+  }
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.2rem;
+  }
+  .cart-img {
+    margin-bottom: 1rem;
+    margin-right: 0;
+    width: 80px;
+    height: 80px;
+  }
+  .athlo-slider {
+    max-width: 98vw;
+    height: 48vw;
+    min-height: 200px;
+  }
+  .athlo-slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
   }
   .cookies-banner {
     flex-direction: column;
@@ -758,9 +936,96 @@ body.light-mode .logo-subtitle {
   .cookies-banner button {
     width: 100%;
   }
+}
+
+@media (max-width: 600px) {
+  /* Móviles medianos */
+  header.hero {
+    height: 60vh;
+  }
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  .cta {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  section {
+    padding: 40px 10px 25px 10px;
+  }
+  section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .program-cards, .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card {
+    padding: 1rem 0.8rem;
+  }
+  .card h3 {
+    font-size: 1.1rem;
+  }
+  .card p {
+    font-size: 0.9rem;
+  }
+  .testimonial {
+    padding: 1.2rem 1rem;
+  }
+  .testimonial img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  .testimonial blockquote {
+    font-size: 1rem;
+  }
+  .contact-form, .registration-form {
+    max-width: 98%;
+    padding: 1.5rem 1rem;
+  }
+  .apply-form {
+    padding: 1.5rem 1rem;
+  }
+  .service-detail {
+    padding: 1.5rem 1rem;
+  }
+  .service-detail h1 {
+    font-size: 1.5rem;
+  }
+  .merch-item {
+    width: 98vw;
+    max-width: 300px;
+    padding: 1.2rem 1rem;
+  }
+  .merch-item img {
+    width: 130px;
+    height: 130px;
+  }
+  .cart-list {
+    padding: 60px 10px 25px 10px;
+  }
+  .cart-item {
+    padding: 0.8rem 1rem;
+  }
+  .cart-img {
+    width: 70px;
+    height: 70px;
+  }
+  .athlo-slider {
+    height: 180px;
+  }
+  .athlo-slider-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.6rem;
+  }
   .logo-img {
     width: 98vw;
-    max-width: 99vw;
+    max-width: 350px;
   }
   .logo-hero {
     min-height: 40vh;
@@ -771,7 +1036,156 @@ body.light-mode .logo-subtitle {
     padding-left: 8px;
     padding-right: 8px;
   }
-} 
+  .intro h2 {
+    font-size: 1.8rem;
+  }
+  .intro-message {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Móviles pequeños */
+  .main-navbar ul {
+    gap: 0.3rem;
+  }
+  .navbar-logo a {
+    font-size: 1.8rem;
+  }
+  .main-navbar a {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.3rem;
+  }
+  .hero-content h1 {
+    font-size: 1.3rem;
+  }
+  .hero-content p {
+    font-size: 0.85rem;
+  }
+  .cta {
+    padding: 0.6rem 1.3rem;
+    font-size: 0.85rem;
+  }
+  section {
+    padding: 35px 8px 20px 8px;
+  }
+  section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .card {
+    padding: 0.8rem 0.6rem;
+  }
+  .card h3 {
+    font-size: 1rem;
+  }
+  .card p {
+    font-size: 0.85rem;
+  }
+  .testimonial {
+    padding: 1rem 0.8rem;
+  }
+  .testimonial img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .testimonial blockquote {
+    font-size: 0.9rem;
+  }
+  .contact-form, .registration-form {
+    max-width: 100%;
+    padding: 1.2rem 0.8rem;
+  }
+  .apply-form {
+    padding: 1.2rem 0.8rem;
+  }
+  .service-detail {
+    padding: 1.2rem 0.8rem;
+  }
+  .service-detail h1 {
+    font-size: 1.3rem;
+  }
+  .merch-item {
+    width: 100vw;
+    max-width: 280px;
+    padding: 1rem 0.8rem;
+  }
+  .merch-item img {
+    width: 120px;
+    height: 120px;
+  }
+  .cart-list {
+    padding: 50px 8px 20px 8px;
+  }
+  .cart-item {
+    padding: 0.6rem 0.8rem;
+  }
+  .cart-img {
+    width: 60px;
+    height: 60px;
+  }
+  .athlo-slider {
+    height: 160px;
+  }
+  .athlo-slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.4rem;
+  }
+  .logo-img {
+    width: 100vw;
+    max-width: 300px;
+  }
+  .logo-hero {
+    min-height: 35vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .intro h2 {
+    font-size: 1.6rem;
+  }
+  .intro-message {
+    font-size: 0.9rem;
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 900px) and (orientation: landscape) {
+  .logo-hero {
+    min-height: 60vh;
+  }
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .athlo-slider {
+    height: 35vh;
+  }
+}
+
+/* Soporte para pantallas de alta densidad (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo-img, .merch-item img, .cart-img, .testimonial img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Mejoras de accesibilidad para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .main-navbar a, .cta, .cta-small, .add-to-cart, .qty-btn, .remove-btn, .buy-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .dropdown-content a {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .athlo-slider-btn {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
 
 /* Servicios */
 .services {
